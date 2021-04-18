@@ -3,11 +3,12 @@
 
 struct student
 	{
-	    char Student_name[1000];
+	    char Student_name[100];
 	    int Student_ID;
-	    int day,month,year;
+	    int date[3];
 	    int Student_score_of_last_year;
 	};
+typedef struct student student;
 
 int main()
 {
