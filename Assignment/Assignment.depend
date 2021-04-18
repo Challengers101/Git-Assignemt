@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1618782518 source:c:\users\mahmo\desktop\project\git-assignemt\assignment\main.c
+	<stdio.h>
+	<stdlib.h>
+
