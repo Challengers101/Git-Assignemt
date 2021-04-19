@@ -32,13 +32,13 @@ typedef struct NodeOfLinkedList node;    //for convenience
 
 node* createnode(student studen1)   //a function to create a node of a linked list
 {
-	node* result = malloc(sizeof(node)); //allocating a node in the heap 
+	node* result = malloc(sizeof(node)); //allocating a node in the heap
 	result->studentD = studen1;
 	result->next = NULL;
 	return result;
 }
 
-node* insertathead(node** head, node* tobeinseted) 
+node* insertathead(node** head, node* tobeinseted)
 {
 	/*a function that adds a node at the head
 	of the linked list then returns the new head*/
@@ -96,14 +96,14 @@ void insertatmiddle(node** head, node* tobeinserted)
 void visualizelinkedlist(node* head)
 {
 	/*
-	this a function that visualizes the linked list 
+	this a function that visualizes the linked list
 	to help us better understand the code.
 	*/
 	node* temp = head;
 	while (temp != NULL)
 	{
 		printf("name:%s  Student_ID:%d  date of birth:%d/%d/%d  Student_score_of_last_year:%d\n\t\t\t\t%c\n",
-			temp->studentD.Student_name, 
+			temp->studentD.Student_name,
 			temp->studentD.Student_ID,
 			temp->studentD.date[1],
 			temp->studentD.date[0],
@@ -118,7 +118,7 @@ void visualizelinkedlist(node* head)
 node* createlinkedlist()
 {
 	/*
-	this function create a linked list 
+	this function create a linked list
 	and takes the input from the user directly
 	*/
 	int n; //number of students
@@ -152,35 +152,10 @@ node* createlinkedlist()
 	return head;
 }
 
-student* create_array(int);
-student* insert(student*,int*,int);
-void display(student* s,int);
-student* Read_Data(int*);
-
-int main()
-{
-	int n;
-	student* s=Read_Data(&n);
-	display(s,n);
-  
-  node* head;
-	head = createlinkedlist();
-	visualizelinkedlist(head);
-    	return 0;
-}
-
 student* create_array(int n)
 {
     return (student*)calloc(n,sizeof(student));
 }
-
-void display(student* s,int n)
-{   for(int i=0;i<n;i++)
-{
-    printf("name=%s\nid=%d\ndate=%d\\%d\\%d\nscore=%d\n",s[i].Student_name,s[i].Student_ID,s[i].date[0],s[i].date[1],s[i].date[2],s[i].Student_score_of_last_year);
-}
-}
-
 student* insert(student*s,int* n,int p)
 {   student x;
     s=(student*)realloc(s,sizeof(student)*(*n+1));
@@ -193,7 +168,12 @@ student* insert(student*s,int* n,int p)
     *n=*n+1;
     return s;
 }
-
+void display(student* s,int n)
+{   for(int i=0;i<n;i++)
+    {
+    printf("name=%s\nid=%d\ndate=%d\\%d\\%d\nscore=%d\n",s[i].Student_name,s[i].Student_ID,s[i].date[0],s[i].date[1],s[i].date[2],s[i].Student_score_of_last_year);
+    }
+}
 student* Read_Data(int *n)
 {
 
@@ -225,4 +205,16 @@ student* Read_Data(int *n)
 	}
 	printf("\n\n\n");
 	return s;
+}
+
+int main()
+{
+	int n;
+	student* s=Read_Data(&n);
+	display(s,n);
+
+    node* head;
+	head = createlinkedlist();
+	visualizelinkedlist(head);
+    	return 0;
 }
