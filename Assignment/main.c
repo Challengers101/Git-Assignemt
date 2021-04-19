@@ -68,11 +68,15 @@ void insertattail(node** head, node* tobeinserted)
 	temp->next = tobeinserted;
 }
 
-void insertatmiddle(node* head, node* tobeinserted)
+void insertatmiddle(node** head, node* tobeinserted)
 {
 	/*a function that adds a node at the middle
 	of the linked*/
-
+	if (*head == NULL) //just incase the head pointer is NULL
+	{
+		*head = tobeinserted;
+		return;
+	}
 	int n = 0;
 	node* temp = head;
 	while (temp != NULL)
@@ -80,7 +84,7 @@ void insertatmiddle(node* head, node* tobeinserted)
 		n++;
 		temp = temp->next;
 	}
-	int mid = (n-1) / 2;
+	int mid = (n - 1) / 2;
 	temp = head;
 	for (int i = 0; i < mid; i++)
 	{
