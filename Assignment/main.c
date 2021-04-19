@@ -49,14 +49,18 @@ node* insertathead(node** head, node* tobeinseted)
 	return tobeinseted;
 }
 
-void insertattail(node* head, node* tobeinserted)
+void insertattail(node** head, node* tobeinserted)
 {
 	/*a function that adds a node at the tail
 	of the linked*/
 
 	tobeinserted->next = NULL;
-	node* temp;
-	temp = head;
+	if (*head == NULL) //just incase the head pointer is NULL
+	{
+		*head = tobeinserted;
+		return;
+	}
+	node* temp = *head;
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
@@ -150,6 +154,7 @@ int main()
     node* head;
 	head = createlinkedlist();
 	visualizelinkedlist(head);
+	
 
     return 0;
 }
