@@ -24,6 +24,13 @@ student create_student(char name[], int ID, int day, int month, int year, int sc
 	return result;
 }
 
+struct NodeOfLinkedList
+{
+	student studentD;    //a struct that represent the data of the student in the node
+	struct NodeOfLinkedList* next;  //a pointer to the next node in the list
+};
+typedef struct NodeOfLinkedList node;    //for convenience
+
 int main()
 {
     printf("Hello world!\n");
