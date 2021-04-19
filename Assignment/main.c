@@ -98,8 +98,8 @@ void visualizelinkedlist(node* head)
 		printf("name:%s  Student_ID:%d  date of birth:%d/%d/%d  Student_score_of_last_year:%d\n\t\t\t\t%c\n",
 			temp->studentD.Student_name, 
 			temp->studentD.Student_ID,
-			temp->studentD.date[0],
 			temp->studentD.date[1],
+			temp->studentD.date[0],
 			temp->studentD.date[2],
 			temp->studentD.Student_score_of_last_year,
 			25);
@@ -108,8 +108,48 @@ void visualizelinkedlist(node* head)
 	printf("\t\t\t       NULL\n\n");
 }
 
+node* createlinkedlist()
+{
+	/*
+	this function create a linked list 
+	and takes the input from the user directly
+	*/
+	int n; //number of students
+	student s;
+	char name[100];
+	int ID, day, month, year, score;
+	node* head = NULL; //the head of the linked list
+	node* temp; //a temporary pointer to a node
+	printf("please enter the number of students that ypu want to store:");
+	scanf("%d", &n);
+	printf("\n");
+	for (int i = 0; i < n; i++)
+	{
+		printf("please enter the name of student number %d\n", i+1);
+		scanf("%s", name);
+		printf("please enter the id of student number %d\n", i+1);
+		scanf("%d", &ID);
+		printf("please enter the day of birth of student number %d\n", i+1);
+		scanf("%d", &day);
+		printf("please enter the month of bith of student number %d\n", i+1);
+		scanf("%d", &month);
+		printf("please enter the year of birth of student number %d\n", i+1);
+		scanf("%d", &year);
+		printf("please enter the score of the previous year of student number %d\n", i+1);
+		scanf("%d", &score);
+		s = create_student(name, ID, day, month, year, score);
+		temp = createnode(s);
+		insertathead(&head, temp);
+	}
+	printf("\n\n\n");
+	return head;
+}
+
 int main()
 {
-    printf("Hello world!\n");
+    node* head;
+	head = createlinkedlist();
+	visualizelinkedlist(head);
+
     return 0;
 }
