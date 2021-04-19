@@ -39,7 +39,52 @@ node* createnode(student studen1)   //a function to create a node of a linked li
 	return result;
 }
 
+node* insertathead(node** head, node* tobeinseted) 
+{
+	/*a function that adds a node at the head
+	of the linked list then returns the new head*/
 
+	tobeinseted->next = *head;
+	*head = tobeinseted;
+	return tobeinseted;
+}
+
+void insertattail(node* head, node* tobeinserted)
+{
+	/*a function that adds a node at the tail
+	of the linked*/
+
+	tobeinserted->next = NULL;
+	node* temp;
+	temp = head;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = tobeinserted;
+}
+
+void insertatmiddle(node* head, node* tobeinserted)
+{
+	/*a function that adds a node at the middle
+	of the linked*/
+
+	int n = 0;
+	node* temp = head;
+	while (temp != NULL)
+	{
+		n++;
+		temp = temp->next;
+	}
+	int mid = (n-1) / 2;
+	temp = head;
+	for (int i = 0; i < mid; i++)
+	{
+		temp = temp->next;
+	}
+	tobeinserted->next = temp->next;
+	temp->next = tobeinserted;
+}
 
 int main()
 {
