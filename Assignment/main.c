@@ -7,8 +7,10 @@ struct student
 	    int Student_ID;
 	    int date[3];                        //in the format dd/mm/yy
 	    int Student_score_of_last_year;
-	};typedef struct student student;     //for convenience
-	student create_student(char name[], int ID, int day, int month, int year, int score)
+	};
+typedef struct student student;     //for convenience
+
+student create_student(char name[], int ID, int day, int month, int year, int score)
 {
 	// a function to define a student.
 	student result;
@@ -26,36 +28,26 @@ student* insert(student*,int*,int);
 void display(student* s,int);
 student* Read_Data(int*);
 
-student create_student(char name[], int ID, int day, int month, int year, int score)
-{
-	// a function to define a student.
-	student result;
-	strcpy(result.Student_name, name);
-	result.Student_ID = ID;
-	result.date[0] = day;
-	result.date[1] = month;
-	result.date[2] = year;
-	result.Student_score_of_last_year = score;
-	return result;
-}
-
 int main()
 {
-    int n;
-student* s=Read_Data(&n);
-display(s,n);
-    return 0;
+	int n;
+	student* s=Read_Data(&n);
+	display(s,n);
+    	return 0;
 }
+
 student* create_array(int n)
 {
     return (student*)calloc(n,sizeof(student));
 }
+
 void display(student* s,int n)
 {   for(int i=0;i<n;i++)
 {
     printf("name=%s\nid=%d\ndate=%d\\%d\\%d\nscore=%d\n",s[i].Student_name,s[i].Student_ID,s[i].date[0],s[i].date[1],s[i].date[2],s[i].Student_score_of_last_year);
 }
 }
+
 student* insert(student*s,int* n,int p)
 {   student x;
     s=(student*)realloc(s,sizeof(student)*(*n+1));
@@ -68,6 +60,7 @@ student* insert(student*s,int* n,int p)
     *n=*n+1;
     return s;
 }
+
 student* Read_Data(int *n)
 {
 
@@ -87,7 +80,7 @@ student* Read_Data(int *n)
 		scanf("%d", &ID);
 		printf("please enter the day of birth of student number %d\n", i+1);
 		scanf("%d", &day);
-		printf("please enter the month of bith of student number %d\n", i+1);
+		printf("please enter the month of birth of student number %d\n", i+1);
 		scanf("%d", &month);
 		printf("please enter the year of birth of student number %d\n", i+1);
 		scanf("%d", &year);
