@@ -128,7 +128,7 @@ node* createlinkedlist()
 	int ID, day, month, year, score;
 	node* head = NULL; //the head of the linked list
 	node* temp; //a temporary pointer to a node
-	printf("please enter the number of students that ypu want to store:");
+	printf("please enter the number of students that you want to store:");
 	scanf("%d", &n);
 	printf("\n");
 	for (int i = 0; i < n; i++)
@@ -139,7 +139,7 @@ node* createlinkedlist()
 		scanf("%d", &ID);
 		printf("please enter the day of birth of student number %d\n", i+1);
 		scanf("%d", &day);
-		printf("please enter the month of bith of student number %d\n", i+1);
+		printf("please enter the month of birth of student number %d\n", i+1);
 		scanf("%d", &month);
 		printf("please enter the year of birth of student number %d\n", i+1);
 		scanf("%d", &year);
