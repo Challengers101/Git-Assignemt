@@ -31,6 +31,16 @@ struct NodeOfLinkedList
 };
 typedef struct NodeOfLinkedList node;    //for convenience
 
+node* createnode(student studen1)   //a function to create a node of a linked list
+{
+	node* result = malloc(sizeof(node)); //allocating a node in the heap 
+	result->studentD = studen1;
+	result->next = NULL;
+	return result;
+}
+
+
+
 int main()
 {
     printf("Hello world!\n");
