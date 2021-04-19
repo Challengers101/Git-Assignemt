@@ -86,6 +86,28 @@ void insertatmiddle(node* head, node* tobeinserted)
 	temp->next = tobeinserted;
 }
 
+void visualizelinkedlist(node* head)
+{
+	/*
+	this a function that visualizes the linked list 
+	to help us better understand the code.
+	*/
+	node* temp = head;
+	while (temp != NULL)
+	{
+		printf("name:%s  Student_ID:%d  date of birth:%d/%d/%d  Student_score_of_last_year:%d\n\t\t\t\t%c\n",
+			temp->studentD.Student_name, 
+			temp->studentD.Student_ID,
+			temp->studentD.date[0],
+			temp->studentD.date[1],
+			temp->studentD.date[2],
+			temp->studentD.Student_score_of_last_year,
+			25);
+		temp = temp->next;
+	}
+	printf("\t\t\t       NULL\n\n");
+}
+
 int main()
 {
     printf("Hello world!\n");
