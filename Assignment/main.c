@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 struct student
-	{
-	    char Student_name[100];
-	    int Student_ID;
-	    int date[3];                        //in the format dd/mm/yy
-	    int Student_score_of_last_year;
-	};
+{
+	char Student_name[100];
+        int Student_ID;
+        int date[3];                        //in the format dd/mm/yy
+	int Student_score_of_last_year;
+};
 typedef struct student student;     //for convenience
 
 student create_student(char name[], int ID, int day, int month, int year, int score)
@@ -38,14 +38,13 @@ node* createnode(student studen1)   //a function to create a node of a linked li
 	return result;
 }
 
-node* insertathead(node** head, node* tobeinseted)
+void insertathead(node** head, node* tobeinseted)
 {
 	/*a function that adds a node at the head
 	of the linked list then returns the new head*/
 
 	tobeinseted->next = *head;
 	*head = tobeinseted;
-	return tobeinseted;
 }
 
 void insertattail(node** head, node* tobeinserted)
@@ -77,14 +76,14 @@ void insertatmiddle(node** head, node* tobeinserted)
 		return;
 	}
 	int n = 0;
-	node* temp = head;
+	node* temp = *head;
 	while (temp != NULL)
 	{
 		n++;
 		temp = temp->next;
 	}
 	int mid = (n - 1) / 2;
-	temp = head;
+	temp = *head;
 	for (int i = 0; i < mid; i++)
 	{
 		temp = temp->next;
