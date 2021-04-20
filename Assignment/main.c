@@ -38,58 +38,51 @@ node* createnode(student studen1)   //a function to create a node of a linked li
 	return result;
 }
 
-void insertathead(node** head, node* tobeinseted)
+void insertinlinkedlist(node** head, node* tobeinserted, char name[])
 {
-	/*a function that adds a node at the head
-	of the linked list then returns the new head*/
+	/*a function that adds a node at the head, tai, or head*/
 
-	tobeinseted->next = *head;
-	*head = tobeinseted;
-}
-
-void insertattail(node** head, node* tobeinserted)
-{
-	/*a function that adds a node at the tail
-	of the linked*/
-
-	tobeinserted->next = NULL;
 	if (*head == NULL) //just incase the head pointer is NULL
 	{
 		*head = tobeinserted;
 		return;
 	}
-	node* temp = *head;
-	while (temp->next != NULL)
+	else
 	{
-		temp = temp->next;
+		if (strcmp(name, "head") == 0)
+		{
+			tobeinserted->next = *head;
+			*head = tobeinserted;
+		}
+		else if (strcmp(name, "tail") == 0)
+		{
+			tobeinserted->next = NULL;
+			node* temp = *head;
+			while (temp->next != NULL)
+			{
+				temp = temp->next;
+			}
+			temp->next = tobeinserted;
+		}
+		else if (strcmp(name, "mid") == 0)
+		{
+			int n = 0;
+			node* temp = *head;
+			while (temp != NULL)
+			{
+				n++;
+				temp = temp->next;
+			}
+			int mid = (n - 1) / 2;
+			temp = *head;
+			for (int i = 0; i < mid; i++)
+			{
+				temp = temp->next;
+			}
+			tobeinserted->next = temp->next;
+			temp->next = tobeinserted;
+		}
 	}
-	temp->next = tobeinserted;
-}
-
-void insertatmiddle(node** head, node* tobeinserted)
-{
-	/*a function that adds a node at the middle
-	of the linked*/
-	if (*head == NULL) //just incase the head pointer is NULL
-	{
-		*head = tobeinserted;
-		return;
-	}
-	int n = 0;
-	node* temp = *head;
-	while (temp != NULL)
-	{
-		n++;
-		temp = temp->next;
-	}
-	int mid = (n - 1) / 2;
-	temp = *head;
-	for (int i = 0; i < mid; i++)
-	{
-		temp = temp->next;
-	}
-	tobeinserted->next = temp->next;
-	temp->next = tobeinserted;
 }
 
 void visualizelinkedlist(node* head)
