@@ -138,7 +138,7 @@ node* createlinkedlist()
 		scanf("%d", &score);
 		s = create_student(name, ID, day, month, year, score);
 		temp = createnode(s);
-		insertathead(&head, temp);
+		insertinlinkedlist(&head, temp, "head");
 	}
 	printf("\n\n\n");
 	return head;
