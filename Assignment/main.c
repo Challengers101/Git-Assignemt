@@ -148,6 +148,7 @@ student* create_array(int n)
 {
     return (student*)calloc(n,sizeof(student));
 }
+
 student* insert(student*s,int* n,int p)
 {   student x;
     s=(student*)realloc(s,sizeof(student)*(*n+1));
@@ -160,12 +161,14 @@ student* insert(student*s,int* n,int p)
     *n=*n+1;
     return s;
 }
+
 void display(student* s,int n)
 {   for(int i=0;i<n;i++)
     {
     printf("name=%s\nid=%d\ndate=%d\\%d\\%d\nscore=%d\n",s[i].Student_name,s[i].Student_ID,s[i].date[0],s[i].date[1],s[i].date[2],s[i].Student_score_of_last_year);
     }
 }
+
 student* Read_Data(int *n)
 {
 
@@ -209,5 +212,5 @@ int main()
 	head = createlinkedlist();
 	visualizelinkedlist(head);
 	
-    	return 0;
+    return 0;
 }
