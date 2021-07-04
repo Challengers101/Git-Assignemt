@@ -158,6 +158,21 @@ student* insert(student*s,int* n,int p)
         s[i]=s[i+1];
         s[i+1]=x;
     }
+        char name[100];
+        int ID, day, month, year, score;
+        printf("please enter the name of student number %d\n", p);
+		scanf("%s", name);
+		printf("please enter the id of student number %d\n", p);
+		scanf("%d", &ID);
+		printf("please enter the day of birth of student number %d\n", p);
+		scanf("%d", &day);
+		printf("please enter the month of birth of student number %d\n", p);
+		scanf("%d", &month);
+		printf("please enter the year of birth of student number %d\n", p);
+		scanf("%d", &year);
+		printf("please enter the score of the previous year of student number %d\n", p);
+		scanf("%d", &score);
+		s[p-1] = create_student(name, ID, day, month, year, score);
     *n=*n+1;
     return s;
 }
@@ -207,10 +222,13 @@ int main()
 	int n;
 	student* s=Read_Data(&n);
 	display(s,n);
-
+    s=insert(s,&n,3);
+    display(s,n);
     node* head;
 	head = createlinkedlist();
 	visualizelinkedlist(head);
-	
+
+
+
     return 0;
 }
