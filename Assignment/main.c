@@ -228,7 +228,7 @@ int main()
 	/*int n = 1;
 	student* s = init_dynamic_array(n);
 	s[0] = s1;
-	for (int i=0; i<999999; i++)
+	for (int i=0; i<9; i++)
 	{
 		s = insert_in__dynamic_array(s, &n, n+1, s1);
 	}*/
@@ -261,7 +261,7 @@ int main()
 	/*node *head = createlinkedlist();
     visualizelinkedlist(head);*/
     
-    /*int N = 1000000;
+    /*int N = 10;
     node* head = createnode(s1);
 	for (int i=0; i<N-1; i++)
 	{
