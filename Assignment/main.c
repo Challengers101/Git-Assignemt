@@ -154,7 +154,10 @@ student* init_dynamic_array(int n)
 
 student* insert_in__dynamic_array(student* s, int* n, int p, student  student_to_be_inserted)
 {   
-    /* this function inserts a new student at position p*/
+    /* this function inserts a new student at position p
+    if we want to insert at the begining we put p = 1
+    if we want to insert at the mid we put p = (n+2)/2
+    if we want to insert at the end we put p = n+1*/
 	student x;
     s=(student*)realloc(s,sizeof(student)*(*n+1));
     for(int i=*n-1;i>=p-1;i--)
