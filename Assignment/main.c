@@ -106,7 +106,7 @@ void visualizelinkedlist(node* head)
 node* createlinkedlist()
 {
 	/*
-	this function create a linked list
+	this function creates a linked list
 	and takes the input from the user directly
 	*/
 	int n; //number of students
@@ -142,11 +142,13 @@ node* createlinkedlist()
 
 student* init_dynamic_array(int n)
 {
+    /* this function initializes the dynamic array*/
     return (student*)calloc(n,sizeof(student));
 }
 
 student* insert_in__dynamic_array(student* s, int* n, int p, student  student_to_be_inserted)
 {   
+    /* this function inserts a new student at position p*/
 	student x;
     s=(student*)realloc(s,sizeof(student)*(*n+1));
     for(int i=*n-1;i>=p-1;i--)
@@ -184,8 +186,10 @@ void display_dynamic_array(student* s, int n)
 
 student* create_dynamic_array(int *n)
 {
-
-	//number of students
+    /*
+	this function creates a dynamic array
+	and takes the input from the user directly
+	*/
 	student* s;
 	char name[50];
 	int ID, day, month, year, score;
