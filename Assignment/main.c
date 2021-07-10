@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
 struct student
 {
-	char Student_name[100];
-        int Student_ID;
-        int date[3];                        //in the format dd/mm/yy
+	char Student_name[50];
+    int Student_ID;
+    int date[3];                        //in the format dd/mm/yy
 	int Student_score_of_last_year;
 };
 typedef struct student student;     //for convenience
@@ -38,7 +40,7 @@ node* createnode(student studen1)   //a function to create a node of a linked li
 	return result;
 }
 
-void insertinlinkedlist(node** head, node* tobeinserted, char name[])
+void insertinlinkedlist(node** head, node* tobeinserted, char name[], int n)
 {
 	/*a function that adds a node at the head, tai, or head*/
 
@@ -66,13 +68,7 @@ void insertinlinkedlist(node** head, node* tobeinserted, char name[])
 		}
 		else if (strcmp(name, "mid") == 0)
 		{
-			int n = 0;
 			node* temp = *head;
-			while (temp != NULL)
-			{
-				n++;
-				temp = temp->next;
-			}
 			int mid = (n - 1) / 2;
 			temp = *head;
 			for (int i = 0; i < mid; i++)
@@ -115,11 +111,11 @@ node* createlinkedlist()
 	*/
 	int n; //number of students
 	student s;
-	char name[100];
+	char name[50];
 	int ID, day, month, year, score;
 	node* head = NULL; //the head of the linked list
 	node* temp; //a temporary pointer to a node
-	printf("please enter the number of students that you want to store:");
+	printf("please enter the number of students that you want to store: ");
 	scanf("%d", &n);
 	printf("\n");
 	for (int i = 0; i < n; i++)
@@ -138,19 +134,20 @@ node* createlinkedlist()
 		scanf("%d", &score);
 		s = create_student(name, ID, day, month, year, score);
 		temp = createnode(s);
-		insertinlinkedlist(&head, temp, "head");
+		insertinlinkedlist(&head, temp, "head", n);
 	}
 	printf("\n\n\n");
 	return head;
 }
 
-student* create_array(int n)
+student* init_dynamic_array(int n)
 {
     return (student*)calloc(n,sizeof(student));
 }
 
-student* insert(student*s,int* n,int p)
-{   student x;
+student* insert_in__dynamic_array(student* s, int* n, int p, student  student_to_be_inserted)
+{   
+	student x;
     s=(student*)realloc(s,sizeof(student)*(*n+1));
     for(int i=*n-1;i>=p-1;i--)
     {
@@ -158,43 +155,44 @@ student* insert(student*s,int* n,int p)
         s[i]=s[i+1];
         s[i+1]=x;
     }
-        char name[100];
-        int ID, day, month, year, score;
-        printf("please enter the name of student number %d\n", p);
-		scanf("%s", name);
-		printf("please enter the id of student number %d\n", p);
-		scanf("%d", &ID);
-		printf("please enter the day of birth of student number %d\n", p);
-		scanf("%d", &day);
-		printf("please enter the month of birth of student number %d\n", p);
-		scanf("%d", &month);
-		printf("please enter the year of birth of student number %d\n", p);
-		scanf("%d", &year);
-		printf("please enter the score of the previous year of student number %d\n", p);
-		scanf("%d", &score);
-		s[p-1] = create_student(name, ID, day, month, year, score);
+
+	s[p-1] = student_to_be_inserted;
     *n=*n+1;
     return s;
 }
 
-void display(student* s,int n)
-{   for(int i=0;i<n;i++)
-    {
-    printf("name=%s\nid=%d\ndate=%d\\%d\\%d\nscore=%d\n",s[i].Student_name,s[i].Student_ID,s[i].date[0],s[i].date[1],s[i].date[2],s[i].Student_score_of_last_year);
-    }
+void display_dynamic_array(student* s, int n)
+{
+	/*
+	this a function that visualizes the array
+	to help us better understand the code.
+	*/
+	
+	for(int i=0; i<n; i++)
+	{
+		printf("name:%s  Student_ID:%d  date of birth:%d/%d/%d  Student_score_of_last_year:%d\n\t\t\t\t%c\n",
+			s[i].Student_name,
+			s[i].Student_ID,
+			s[i].date[0],
+			s[i].date[1],
+			s[i].date[2],
+			s[i].Student_score_of_last_year,
+			25);
+	}
+	printf("\t\t\t       END\n\n");
 }
 
-student* Read_Data(int *n)
+student* create_dynamic_array(int *n)
 {
 
-	 //number of students
+	//number of students
 	student* s;
-	char name[100];
+	char name[50];
 	int ID, day, month, year, score;
-	printf("please enter the number of students that you want to store:");
+	printf("please enter the number of students that you want to store: ");
 	scanf("%d", n);
 	printf("\n");
-	s=create_array(*n);
+	s=init_dynamic_array(*n);
 	for (int i = 0; i < *n; i++)
 	{
 		printf("please enter the name of student number %d\n", i+1);
@@ -210,8 +208,6 @@ student* Read_Data(int *n)
 		printf("please enter the score of the previous year of student number %d\n", i+1);
 		scanf("%d", &score);
 		s[i] = create_student(name, ID, day, month, year, score);
-
-
 	}
 	printf("\n\n\n");
 	return s;
@@ -219,16 +215,86 @@ student* Read_Data(int *n)
 
 int main()
 {
-	int n;
-	student* s=Read_Data(&n);
-	display(s,n);
-    s=insert(s,&n,3);
-    display(s,n);
-    node* head;
-	head = createlinkedlist();
-	visualizelinkedlist(head);
+	student s1 = create_student("Mahmoud", 406, 23, 7, 2000, 84);
+    
+    /*int n;
+    student* s = create_dynamic_array(&n);
+    display_dynamic_array(s,n);*/
+    
+	/*int n = 1;
+	student* s = init_dynamic_array(n);
+	s[0] = s1;
+	for (int i=0; i<999999; i++)
+	{
+		s = insert_in__dynamic_array(s, &n, n+1, s1);
+	}*/
+	//display_dynamic_array(s, n);
 
+	/*s = insert_in__dynamic_array(s, &n, 1, create_student("in", 406, 23, 7, 2000, 84)); //insert at the start
+	display_dynamic_array(s, n);*/
+	
+	/*s = insert_in__dynamic_array(s, &n, n+1, create_student("in", 406, 23, 7, 2000, 84)); //insert at the end
+	display_dynamic_array(s, n);*/
+	
+	/*s = insert_in__dynamic_array(s, &n, (n+2)/2, create_student("in", 406, 23, 7, 2000, 84)); //insert at the mid
+	display_dynamic_array(s, n);*/
+	
+	/*int start = clock();
+	s = insert_in__dynamic_array(s, &n, 1, create_student("in", 406, 23, 7, 2000, 84));
+	int stop = clock();
+	printf("\ntime to insert at start is %f\n\n", ((double)(stop-start)/CLOCKS_PER_SEC));
+	
+		start = clock();
+	s = insert_in__dynamic_array(s, &n, (n+2)/2, create_student("in", 406, 23, 7, 2000, 84));
+	stop = clock();
+	printf("\ntime to insert at middle is %f\n\n", ((double)(stop-start)/CLOCKS_PER_SEC));
+	
+	start = clock();
+	s = insert_in__dynamic_array(s, &n, n+1, create_student("in", 406, 23, 7, 2000, 84));
+	stop = clock();
+	printf("\ntime to insert at end is %f\n\n", ((double)(stop-start)/CLOCKS_PER_SEC));*/
+	
+	/*node *head = createlinkedlist();
+    visualizelinkedlist(head);*/
+	
+	
+    /*node* head = createlinkedlist();
+    visualizelinkedlist(head);*/
+    
+    /*int N = 1000000;
+    node* head = createnode(s1);
+	for (int i=0; i<N-1; i++)
+	{
+		insertinlinkedlist(&head, createnode(s1), "head", N);
+	}*/
+	//visualizelinkedlist(head);
 
+	/*insertinlinkedlist(&head, createnode(create_student("in", 406, 23, 7, 2000, 84)), "head",N);
+	visualizelinkedlist(head);*/
+	
+	/*insertinlinkedlist(&head, createnode(create_student("in", 406, 23, 7, 2000, 84)), "mid",N);
+	visualizelinkedlist(head);*/
 
+    /*insertinlinkedlist(&head, createnode(create_student("in", 406, 23, 7, 2000, 84)), "tail",N);
+	visualizelinkedlist(head);*/
+	
+    /*int start = clock();
+	insertinlinkedlist(&head, createnode(create_student("in", 406, 23, 7, 2000, 84)), "head",N);
+	int stop = clock();
+	printf("\n\ntime to insert at start is %f\n\n", ((double)(stop-start)/CLOCKS_PER_SEC));
+	
+	start = clock();
+	insertinlinkedlist(&head, createnode(create_student("in", 406, 23, 7, 2000, 84)), "mid",N);
+	stop = clock();
+	printf("\n\ntime to insert at middle is %f\n\n", ((double)(stop-start)/CLOCKS_PER_SEC));
+	
+	start = clock();
+	insertinlinkedlist(&head, createnode(create_student("in", 406, 23, 7, 2000, 84)), "tail",N);
+	stop = clock();
+	printf("\n\ntime to insert at end is %f\n\n", ((double)(stop-start)/CLOCKS_PER_SEC));*/
+    
+    /*printf("\n\nthe size of the structure is %d\n\n", sizeof(student));
+    printf("\n\nthe size of the node is %d\n\n", sizeof(node));*/
+    
     return 0;
 }
