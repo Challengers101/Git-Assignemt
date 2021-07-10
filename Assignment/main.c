@@ -260,10 +260,6 @@ int main()
 	
 	/*node *head = createlinkedlist();
     visualizelinkedlist(head);*/
-	
-	
-    /*node* head = createlinkedlist();
-    visualizelinkedlist(head);*/
     
     /*int N = 1000000;
     node* head = createnode(s1);
